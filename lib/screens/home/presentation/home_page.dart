@@ -136,13 +136,14 @@ class HomePage extends StatelessWidget {
                           },
                         ),
                       );
-                    }
-                    return Center(
-                      child: Text(
+                    } else if (state is HabitInitialState) {
+                      return Text(
                         "لا يوجد عادات تم اضافتها",
                         style: TextStyle(color: AppColors.secondaryText),
-                      ),
-                    );
+                      );
+                    }
+                    // return Text("لا يوجد عادات تم اضافتها");
+                    return Text(" ");
                   },
                 ),
               ],
