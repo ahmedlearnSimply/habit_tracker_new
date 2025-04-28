@@ -32,7 +32,7 @@ class _InsightsScreenState extends State<InsightsScreen> {
         backgroundColor: AppColors.cardColor,
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -43,25 +43,35 @@ class _InsightsScreenState extends State<InsightsScreen> {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: widget.habits.map((habit) {
+                            bool isSelected = habit == widget.habits[index];
                             return GestureDetector(
                               onTap: () {
                                 setState(() {
                                   index = widget.habits.indexOf(habit);
                                 });
                               },
-                              child: Container(
-                                margin: EdgeInsets.symmetric(horizontal: 4),
-                                width: 40,
-                                height: 40,
+                              child: AnimatedContainer(
+                                duration: Duration(microseconds: 300),
+                                margin: EdgeInsets.symmetric(horizontal: 6),
+                                width: 50,
+                                height: 50,
                                 decoration: BoxDecoration(
-                                  color:
-                                      Color(habit.colorValue).withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(8),
+                                  color: isSelected
+                                      ? Color(habit.colorValue)
+                                      : Color(habit.colorValue)
+                                          .withOpacity(0.15),
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: isSelected
+                                      ? Border.all(
+                                          color: Colors.white, width: 2)
+                                      : null,
                                 ),
                                 child: Icon(
                                   IconData(habit.iconCodePoint,
                                       fontFamily: 'MaterialIcons'),
-                                  color: Color(habit.colorValue),
+                                  color: isSelected
+                                      ? Colors.white
+                                      : Color(habit.colorValue),
                                 ),
                               ),
                             );
@@ -69,22 +79,30 @@ class _InsightsScreenState extends State<InsightsScreen> {
                         ),
                       ),
                     ),
-                    Gap(5),
+                    Gap(10),
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
                       },
                       child: Container(
-                        height: 40,
-                        width: 70,
+                        height: 45,
+                        width: 80,
                         decoration: BoxDecoration(
-                          color: widget.habits[index].color,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                            color: widget.habits[index].color,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color:
+                                    widget.habits[index].color.withOpacity(0.4),
+                                blurRadius: 8,
+                                offset: Offset(0, 4),
+                              )
+                            ]),
                         child: Center(
                           child: Text(
                             style: TextStyle(
                               color: Colors.white,
+                              fontWeight: FontWeight.bold,
                             ),
                             "تم",
                           ),
@@ -94,63 +112,26 @@ class _InsightsScreenState extends State<InsightsScreen> {
                   ],
                 ),
                 Gap(30),
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.background,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: Colors.white.withOpacity(0.2),
-                      width: 1,
-                    ),
-                  ),
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 4),
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: Color(widget.habits[index].colorValue)
-                                .withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Icon(
-                            IconData(widget.habits[index].iconCodePoint,
-                                fontFamily: 'MaterialIcons'),
-                            color: Color(widget.habits[index].colorValue),
-                          ),
-                        ),
-                        Gap(10),
-                        Flexible(
-                          child: Text(
-                            widget.habits[index].title,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Gap(10),
+                _buildHabitInfo(widget: widget, index: index),
+                Gap(20),
                 //!year selector
                 //? habit card
                 Container(
                   height: 150,
                   decoration: BoxDecoration(
                     color: AppColors.background,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: Colors.white.withOpacity(0.2),
-                      width: 1,
-                    ),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: Colors.white.withOpacity(0.1)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        blurRadius: 10,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(7.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Center(
                       child: _buildGrid(
                         widget.habits[index].completedDateSet.toList(),
@@ -165,33 +146,37 @@ class _InsightsScreenState extends State<InsightsScreen> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: AppColors.background,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: Colors.white.withOpacity(0.2),
-                      width: 1,
-                    ),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: Colors.white.withOpacity(0.1)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        blurRadius: 10,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Row(
-                          // mainAxisAlignment: ,
+                          // mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
                               margin: EdgeInsets.symmetric(horizontal: 4),
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: Color(widget.habits[index].colorValue)
-                                    .withOpacity(0.2),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
+                              width: 45,
+                              height: 45,
+                              decoration: circleIconDecoration(
+                                  Color(widget.habits[index].colorValue)),
                               child: Icon(
                                 Icons.star,
-                                color: Color(widget.habits[index].colorValue),
+                                size: 28,
+                                color: Color(
+                                  widget.habits[index].colorValue,
+                                ),
                               ),
                             ),
                             Gap(10),
@@ -199,27 +184,25 @@ class _InsightsScreenState extends State<InsightsScreen> {
                               "عدد الاتمامات",
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 24,
+                                fontSize: 22,
                               ),
                             )
                           ],
                         ),
-                        Gap(10),
+                        Gap(15),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 4),
                           width: 60,
                           height: 60,
-                          decoration: BoxDecoration(
-                            color: Color(widget.habits[index].colorValue)
-                                .withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
+                          decoration: circleIconDecoration(
+                              Color(widget.habits[index].colorValue)),
                           child: Center(
                             child: Text(
                               "${widget.habits[index].completedDates.length}",
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
                               ),
                             ),
                           ),
@@ -235,92 +218,92 @@ class _InsightsScreenState extends State<InsightsScreen> {
                     Expanded(
                       child: Container(
                           height: 150,
-                          width: 150,
                           decoration: BoxDecoration(
                             color: AppColors.background,
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(16),
                             border: Border.all(
-                              color: Colors.white.withOpacity(0.2),
-                              width: 1,
-                            ),
+                                color: Colors.white.withOpacity(0.1)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.05),
+                                blurRadius: 10,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
                           ),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "السلسلة الحالية",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                Gap(20),
-                                Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 4),
-                                  width: 60,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        Color(widget.habits[index].colorValue)
-                                            .withOpacity(0.2),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "$currentStreak",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24,
-                                      ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "السلسلة الحالية",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                              ),
+                              Gap(16),
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 4),
+                                width: 60,
+                                height: 60,
+                                decoration: circleIconDecoration(
+                                    Color(widget.habits[index].colorValue)),
+                                child: Center(
+                                  child: Text(
+                                    "$currentStreak",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           )),
                     ),
-                    Gap(10),
+                    Gap(12),
                     Expanded(
                       child: Container(
                           height: 150,
-                          width: 150,
                           decoration: BoxDecoration(
                             color: AppColors.background,
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(16),
                             border: Border.all(
-                              color: Colors.white.withOpacity(0.2),
-                              width: 1,
-                            ),
+                                color: Colors.white.withOpacity(0.1)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.05),
+                                blurRadius: 10,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
                           ),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "افضل سلسلة",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                Gap(20),
-                                Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 4),
-                                  width: 60,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        Color(widget.habits[index].colorValue)
-                                            .withOpacity(0.2),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "$longestStreak",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24,
-                                      ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "افضل سلسلة",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                              ),
+                              Gap(16),
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 4),
+                                width: 60,
+                                height: 60,
+                                decoration: circleIconDecoration(
+                                    Color(widget.habits[index].colorValue)),
+                                child: Center(
+                                  child: Text(
+                                    "$longestStreak",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           )),
                     ),
                   ],
@@ -423,4 +406,74 @@ class _InsightsScreenState extends State<InsightsScreen> {
       },
     );
   }
+}
+
+class _buildHabitInfo extends StatelessWidget {
+  const _buildHabitInfo({
+    super.key,
+    required this.widget,
+    required this.index,
+  });
+
+  final InsightsScreen widget;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.background,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.white.withOpacity(0.1)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.all(14.0),
+        child: Row(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 4),
+              width: 50,
+              height: 50,
+              decoration:
+                  circleIconDecoration(Color(widget.habits[index].colorValue)),
+              child: Icon(
+                IconData(widget.habits[index].iconCodePoint,
+                    fontFamily: 'MaterialIcons'),
+                color: Color(widget.habits[index].colorValue),
+                size: 30,
+              ),
+            ),
+            Gap(12),
+            Flexible(
+              child: Text(
+                widget.habits[index].title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+BoxDecoration circleIconDecoration(Color color) {
+  return BoxDecoration(
+    color: color.withOpacity(0.15),
+    shape: BoxShape.circle,
+  );
 }
