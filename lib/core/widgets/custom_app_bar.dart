@@ -24,7 +24,23 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-      decoration: BoxDecoration(color: AppColors.cardColor),
+      decoration: BoxDecoration(
+        color: AppColors.cardColor,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: Offset(
+              0,
+              4,
+            ),
+          )
+        ],
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -35,11 +51,12 @@ class CustomAppBar extends StatelessWidget {
               Text(
                 "أهلاً، $userName 👋",
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                   fontFamily: 'cairo',
                 ),
+                overflow: TextOverflow.ellipsis,
               ),
               Row(
                 children: [
@@ -47,6 +64,7 @@ class CustomAppBar extends StatelessWidget {
                     "اثر",
                     style: TextStyle(
                       fontSize: 18,
+                      fontWeight: FontWeight.w500,
                       color: Colors.white,
                       fontFamily: 'cairo',
                     ),
@@ -54,13 +72,14 @@ class CustomAppBar extends StatelessWidget {
                   Gap(5),
                   SvgPicture.asset(
                     AppAssets.logoSvg,
-                    width: 40,
+                    width: 36,
+                    height: 36,
                   ),
                 ],
               ),
             ],
           ),
-          Gap(4),
+          Gap(6),
           Text(
             "كل عادة تترك أثرًا",
             style: TextStyle(
@@ -69,28 +88,46 @@ class CustomAppBar extends StatelessWidget {
               fontFamily: 'cairo',
             ),
           ),
-          Gap(20),
+          Gap(24),
           // Action icons
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              IconButton(
-                icon: Icon(Icons.bar_chart_outlined),
-                iconSize: 26,
-                color: AppColors.primaryText,
-                onPressed: onStatsPressed,
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  shape: BoxShape.circle,
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.bar_chart_outlined),
+                  iconSize: 28,
+                  color: AppColors.primaryText,
+                  onPressed: onStatsPressed,
+                ),
               ),
-              IconButton(
-                icon: Icon(Icons.add_circle_outline),
-                iconSize: 28,
-                color: AppColors.primaryText,
-                onPressed: onAddPressed,
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.primaryText.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.add_circle_outline),
+                  iconSize: 34,
+                  color: AppColors.primaryText,
+                  onPressed: onAddPressed,
+                ),
               ),
-              IconButton(
-                icon: Icon(Icons.settings_outlined),
-                iconSize: 26,
-                color: AppColors.primaryText,
-                onPressed: onSettingsPressed,
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  shape: BoxShape.circle,
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.settings_outlined),
+                  iconSize: 28,
+                  color: AppColors.primaryText,
+                  onPressed: onSettingsPressed,
+                ),
               ),
             ],
           ),

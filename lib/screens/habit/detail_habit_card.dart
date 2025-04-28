@@ -88,12 +88,12 @@ class _DetailHabitCardState extends State<DetailHabitCard> {
                                       ),
                                     ),
                                   ),
-                                  Gap(10),
+                                  Gap(20),
                                   Expanded(
                                     child: Text(
                                       widget.habitCard.title,
                                       style: getBodyStyle(
-                                        fontSize: 12,
+                                        fontSize: 14,
                                       ),
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
