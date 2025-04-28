@@ -20,7 +20,6 @@ class InsightsScreen extends StatefulWidget {
 }
 
 class _InsightsScreenState extends State<InsightsScreen> {
-  @override
   int index = 0;
 
   Widget build(BuildContext context) {
