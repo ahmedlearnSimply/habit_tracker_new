@@ -22,7 +22,12 @@ class InsightsScreen extends StatefulWidget {
 class _InsightsScreenState extends State<InsightsScreen> {
   @override
   int index = 0;
+
   Widget build(BuildContext context) {
+    final completedDates = widget.habits[index].completedDateSet.toList();
+    int currentStreak = calculateCurrentStreak(completedDates);
+    int longestStreak = calculateLongestStreak(completedDates);
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.cardColor,
@@ -245,7 +250,7 @@ class _InsightsScreenState extends State<InsightsScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "السلسة الحالية",
+                                  "السلسلة الحالية",
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 Gap(20),
@@ -261,7 +266,7 @@ class _InsightsScreenState extends State<InsightsScreen> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      "3",
+                                      "$currentStreak",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 24,
@@ -307,7 +312,7 @@ class _InsightsScreenState extends State<InsightsScreen> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      "3",
+                                      "$longestStreak",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 24,
@@ -327,6 +332,52 @@ class _InsightsScreenState extends State<InsightsScreen> {
         ),
       ),
     );
+  }
+
+  int calculateCurrentStreak(List<DateTime> completedDates) {
+    if (completedDates.isEmpty) return 0;
+
+    // Sort dates descending
+    completedDates.sort((a, b) => b.compareTo(a));
+
+    DateTime today = DateTime.now();
+    int streak = 0;
+
+    for (DateTime date in completedDates) {
+      if (isSameDay(today.subtract(Duration(days: streak)), date)) {
+        streak++;
+      } else {
+        break;
+      }
+    }
+
+    return streak;
+  }
+
+  int calculateLongestStreak(List<DateTime> completedDates) {
+    if (completedDates.isEmpty) return 0;
+
+    // Sort dates ascending
+    completedDates.sort((a, b) => a.compareTo(b));
+
+    int longest = 1;
+    int current = 1;
+
+    for (int i = 1; i < completedDates.length; i++) {
+      if (isSameDay(
+          completedDates[i - 1].add(Duration(days: 1)), completedDates[i])) {
+        current++;
+        if (current > longest) longest = current;
+      } else {
+        current = 1;
+      }
+    }
+
+    return longest;
+  }
+
+  bool isSameDay(DateTime a, DateTime b) {
+    return a.year == b.year && a.month == b.month && a.day == b.day;
   }
 
   Widget _buildGrid(List<DateTime> completedDates, Color color) {
