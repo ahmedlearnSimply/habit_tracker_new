@@ -10,30 +10,37 @@ class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   // 🌐 Open website
-  void _launchWebsite() async {
-    final url = Uri.parse('https://learrnsimply.com');
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+  Future<void> _launchWebsite() async {
+    final Uri url = Uri.parse('https://learrnsimply.com');
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw 'Could not launch $url';
     }
   }
 
-  // 📸 Open Instagram
-  void _launchInstagram() async {
-    final url = Uri.parse('https://www.instagram.com/ahmed.aaddel');
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+  Future<void> _launchInstagram() async {
+    final Uri url = Uri.parse('https://www.instagram.com/ahmed.aaddel');
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw 'Could not launch $url';
     }
   }
 
-  // ✉️ Send feedback email
-  void _sendFeedback() async {
-    final Uri emailLaunchUri = Uri(
+  Future<void> _sendFeedback() async {
+    final Uri emailUri = Uri(
       scheme: 'mailto',
       path: 'ahmedadel123422@gmail.com',
       query: 'subject=ملاحظات حول تطبيق تتبع العادات',
     );
-    if (await canLaunchUrl(emailLaunchUri)) {
-      await launchUrl(emailLaunchUri);
+    if (!await launchUrl(
+      emailUri,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw 'Could not launch $emailUri';
     }
   }
 

@@ -40,9 +40,10 @@ List<Color> colors = [
   const Color(0xFFAED581), // Lime Green
   const Color(0xFFF06292), // Pink
   const Color(0xFFB0BEC5), // Grey
-  const Color(0xFFFFFFFF), // White
-  const Color(0xFF000000), // Black
+  const Color(0xFF00BCD4), // Cyan (New - nice for bright apps)
+  const Color(0xFFFF7043), // Deep Orange (New - energetic color)
 ];
+
 void showAddHabitSheet(
   BuildContext context, {
   HabitModel? habit,
