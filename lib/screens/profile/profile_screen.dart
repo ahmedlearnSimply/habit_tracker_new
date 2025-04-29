@@ -11,7 +11,8 @@ class SettingsScreen extends StatelessWidget {
 
   // 🌐 Open website
   Future<void> _launchWebsite() async {
-    final Uri url = Uri.parse('https://learrnsimply.com');
+    final Uri url = Uri.parse(
+        'https://learrnsimply.com/%D9%83%D9%84-%D8%B9%D8%A7%D8%AF%D8%A9-%D8%AA%D8%AA%D8%B1%D9%83-%D8%A7%D8%AB%D8%B1/');
     if (!await launchUrl(
       url,
       mode: LaunchMode.externalApplication,
