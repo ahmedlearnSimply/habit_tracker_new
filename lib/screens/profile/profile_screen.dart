@@ -91,11 +91,14 @@ class SettingsScreen extends StatelessWidget {
                   Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
             ),
             Divider(color: Colors.white24),
+            Spacer(),
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("صنع مزيد من الحب والقهوة من احمد عادل"),
+                children: const [
+                  Text(
+                    "Made with ☕ and ❤️ by Ahmed Adel",
+                  ),
                 ],
               ),
             )
