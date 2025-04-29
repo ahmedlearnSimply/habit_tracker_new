@@ -134,7 +134,7 @@ class _DetailHabitCardState extends State<DetailHabitCard> {
                                   children: [
                                     ...[
                                       Icons.edit,
-                                      Icons.calendar_month,
+                                      // Icons.calendar_month,
                                       Icons.delete,
                                     ].map(
                                       (icon) {
