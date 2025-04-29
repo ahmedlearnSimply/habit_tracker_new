@@ -13,6 +13,7 @@ import 'package:habit_tracker/screens/home/bloc/habit_state.dart';
 import 'package:habit_tracker/screens/home/model/habit_model.dart';
 import 'package:habit_tracker/screens/home/widgets/showModelSheet.dart';
 import 'package:habit_tracker/screens/insights/screens/insights_screen.dart';
+import 'package:habit_tracker/screens/profile/profile_screen.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -48,7 +49,13 @@ class HomePage extends StatelessWidget {
                               ));
                         }
                       : null,
-                  onSettingsPressed: () {},
+                  onSettingsPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SettingsScreen(),
+                        ));
+                  },
                 ),
                 BlocBuilder<HabitBloc, HabitState>(
                   builder: (context, state) {
