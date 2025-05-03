@@ -32,7 +32,7 @@ class CustomAppBar extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            blurRadius: 10,
+            blurRadius: 5,
             color: Colors.black.withValues(
               colorSpace: ColorSpace.displayP3,
             ),
@@ -47,94 +47,107 @@ class CustomAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Greeting
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "أهلاً، $userName 👋",
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontFamily: 'cairo',
-                ),
-                overflow: TextOverflow.ellipsis,
-              ),
-              Row(
-                children: [
-                  const Text(
-                    "اثر",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                      fontFamily: 'cairo',
-                    ),
-                  ),
-                  const Gap(5),
-                  SvgPicture.asset(
-                    AppAssets.logoSvg,
-                    width: 36,
-                    height: 36,
-                  ),
-                ],
-              ),
-            ],
-          ),
+          _buildGreeting(),
           const Gap(6),
-          const Text(
-            "كل عادة تترك أثرًا",
-            style: TextStyle(
-              fontSize: 16,
-              color: AppColors.secondaryText,
-              fontFamily: 'cairo',
-            ),
-          ),
+          _buildQuote(),
           const Gap(24),
           // Action icons
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  color: Colors.transparent,
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.bar_chart_outlined),
-                  iconSize: 28,
-                  color: AppColors.primaryText,
-                  onPressed: onStatsPressed,
-                ),
-              ),
-              Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.amber,
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.add_circle_outline),
-                  iconSize: 34,
-                  color: AppColors.cardColor,
-                  onPressed: onAddPressed,
-                ),
-              ),
-              Container(
-                decoration: const BoxDecoration(
-                  color: Colors.transparent,
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.settings_outlined),
-                  iconSize: 28,
-                  color: AppColors.primaryText,
-                  onPressed: onSettingsPressed,
-                ),
-              ),
-            ],
-          ),
+          _buildActionIcons(),
         ],
       ),
+    );
+  }
+
+  Row _buildActionIcons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            color: Colors.transparent,
+            shape: BoxShape.circle,
+          ),
+          child: IconButton(
+            icon: const Icon(Icons.bar_chart_outlined),
+            iconSize: 28,
+            color: AppColors.primaryText,
+            onPressed: onStatsPressed,
+          ),
+        ),
+        Container(
+          decoration: const BoxDecoration(
+            color: AppColors.amber,
+            shape: BoxShape.circle,
+          ),
+          child: IconButton(
+            icon: const Icon(Icons.add_circle_outline),
+            iconSize: 34,
+            color: AppColors.cardColor,
+            onPressed: onAddPressed,
+          ),
+        ),
+        Container(
+          decoration: const BoxDecoration(
+            color: Colors.transparent,
+            shape: BoxShape.circle,
+          ),
+          child: IconButton(
+            icon: const Icon(Icons.settings_outlined),
+            iconSize: 28,
+            color: AppColors.primaryText,
+            onPressed: onSettingsPressed,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Text _buildQuote() {
+    return const Text(
+      "كل عادة تترك أثرًا",
+      style: TextStyle(
+        fontSize: 16,
+        color: Colors.white70,
+        fontFamily: 'cairo',
+      ),
+    );
+  }
+
+  Row _buildGreeting() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          "أهلاً، $userName 👋",
+          style: const TextStyle(
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 0.5,
+            color: Colors.white,
+            fontFamily: 'cairo',
+          ),
+          overflow: TextOverflow.ellipsis,
+        ),
+        Row(
+          children: [
+            const Text(
+              "اثر",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+                fontFamily: 'cairo',
+              ),
+            ),
+            const Gap(5),
+            SvgPicture.asset(
+              AppAssets.logoSvg,
+              width: 36,
+              height: 36,
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
