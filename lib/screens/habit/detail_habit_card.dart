@@ -2,7 +2,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:habit_tracker/core/utils/colors.dart';
 import 'package:habit_tracker/core/utils/text_style.dart';
 import 'package:habit_tracker/screens/habit/habit_card.dart';
 import 'package:habit_tracker/screens/home/model/habit_model.dart';
@@ -14,7 +13,7 @@ class DetailHabitCard extends StatefulWidget {
   final int index;
 
   final VoidCallback? onDelete;
-  DetailHabitCard({
+  const DetailHabitCard({
     super.key,
     required this.habit,
     this.onDelete,
@@ -30,12 +29,10 @@ class _DetailHabitCardState extends State<DetailHabitCard> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final cardW = size.width * 1;
     final cardH = size.height * 0.4;
     final DateTime today = DateTime.now();
     final bool isTodayCompleted = widget.habitCard.completedDates.any((d) =>
         d.year == today.year && d.month == today.month && d.day == today.day);
-    bool isPressed = false;
 
     return Material(
       color: Colors.transparent,

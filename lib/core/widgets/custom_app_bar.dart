@@ -108,14 +108,14 @@ class CustomAppBar extends StatelessWidget {
                 ),
               ),
               Container(
-                decoration: BoxDecoration(
-                  color: AppColors.primaryText.withOpacity(0.1),
+                decoration: const BoxDecoration(
+                  color: AppColors.amber,
                   shape: BoxShape.circle,
                 ),
                 child: IconButton(
                   icon: const Icon(Icons.add_circle_outline),
                   iconSize: 34,
-                  color: AppColors.primaryText,
+                  color: AppColors.cardColor,
                   onPressed: onAddPressed,
                 ),
               ),
