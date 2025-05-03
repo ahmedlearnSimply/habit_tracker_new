@@ -7,15 +7,15 @@ import 'package:habit_tracker/core/utils/text_style.dart';
 import 'package:habit_tracker/screens/habit/detail_habit_card.dart';
 
 class HabitCard extends StatefulWidget {
-  Color color;
-  String title;
+  final Color color;
+  final String title;
   final List<DateTime> completedDates;
   final Function(DateTime) onToggle;
 
-  String? description = " ";
-  double? ver = 10;
-  double? hor = 10;
-  IconData icon;
+  final String? description;
+  final double ver;
+  final double hor;
+  final IconData icon;
   HabitCard({
     super.key,
     required this.title,
@@ -55,7 +55,7 @@ class _HabitCardState extends State<HabitCard> {
             ),
           ),
           width: double.infinity,
-          height: 200,
+          height: MediaQuery.of(context).size.height * 0.25,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -149,6 +149,7 @@ class _HabitCardState extends State<HabitCard> {
           scrollDirection: Axis.horizontal,
           child: Wrap(
             textDirection: TextDirection.ltr,
+            alignment: WrapAlignment.start,
             spacing: spacing,
             runSpacing: spacing,
             direction: Axis.vertical,
@@ -173,36 +174,4 @@ class _HabitCardState extends State<HabitCard> {
       },
     );
   }
-
-  // Widget _buildGrid(List<DateTime> completedDates, Color color) {
-  //   final DateTime today = DateTime.now();
-  //   final DateTime startOfYear = DateTime(today.year, 1, 1);
-  //   final DateTime endDate = today.add(Duration(days: 2)); // Up to today only
-
-  //   final int totalDays = endDate.difference(startOfYear).inDays + 1;
-
-  //   return SingleChildScrollView(
-  //     scrollDirection: Axis.horizontal,
-  //     child: Wrap(
-  //       textDirection: TextDirection.ltr,
-  //       spacing: 4,
-  //       runSpacing: 4,
-  //       direction: Axis.vertical,
-  //       children: List.generate(totalDays, (index) {
-  //         final day = startOfYear.add(Duration(days: index));
-  //         final isCompleted = completedDates.any((d) =>
-  //             d.year == day.year && d.month == day.month && d.day == day.day);
-
-  //         return Container(
-  //           width: 11,
-  //           height: 11,
-  //           decoration: BoxDecoration(
-  //             color: isCompleted ? color : color.withOpacity(0.13),
-  //             borderRadius: BorderRadius.circular(3),
-  //           ),
-  //         );
-  //       }),
-  //     ),
-  //   );
-  // }
 }

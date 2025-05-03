@@ -114,21 +114,25 @@ class CustomAppBar extends StatelessWidget {
             shape: BoxShape.circle,
           ),
           child: IconButton(
-            icon: const Icon(Icons.bar_chart_outlined),
+            icon: const Icon(
+              Icons.bar_chart_outlined,
+            ),
             iconSize: 28,
-            color: AppColors.primaryText,
+            color: AppColors.redColor,
             onPressed: onStatsPressed,
           ),
         ),
         Container(
           decoration: const BoxDecoration(
-            color: AppColors.amber,
+            color: Colors.green,
             shape: BoxShape.circle,
           ),
           child: IconButton(
-            icon: const Icon(Icons.add_circle_outline),
+            icon: const Icon(
+              Icons.add_circle_outline,
+            ),
             iconSize: 34,
-            color: AppColors.cardColor,
+            color: AppColors.primaryText,
             onPressed: onAddPressed,
           ),
         ),
@@ -140,7 +144,7 @@ class CustomAppBar extends StatelessWidget {
           child: IconButton(
             icon: const Icon(Icons.settings_outlined),
             iconSize: 28,
-            color: AppColors.primaryText,
+            color: Colors.blueAccent,
             onPressed: onSettingsPressed,
           ),
         ),
