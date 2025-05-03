@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,7 +12,7 @@ class CustomAppBar extends StatelessWidget {
   final void Function()? onStatsPressed;
   final void Function() onSettingsPressed;
 
-  CustomAppBar({
+  const CustomAppBar({
     super.key,
     required this.userName,
     required this.onAddPressed,
@@ -23,20 +23,22 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
       decoration: BoxDecoration(
         color: AppColors.cardColor,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
             blurRadius: 10,
-            offset: Offset(
+            color: Colors.black.withValues(
+              colorSpace: ColorSpace.displayP3,
+            ),
+            offset: const Offset(
               0,
-              4,
+              2,
             ),
           )
         ],
@@ -50,7 +52,7 @@ class CustomAppBar extends StatelessWidget {
             children: [
               Text(
                 "أهلاً، $userName 👋",
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -60,7 +62,7 @@ class CustomAppBar extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Text(
+                  const Text(
                     "اثر",
                     style: TextStyle(
                       fontSize: 18,
@@ -69,7 +71,7 @@ class CustomAppBar extends StatelessWidget {
                       fontFamily: 'cairo',
                     ),
                   ),
-                  Gap(5),
+                  const Gap(5),
                   SvgPicture.asset(
                     AppAssets.logoSvg,
                     width: 36,
@@ -79,8 +81,8 @@ class CustomAppBar extends StatelessWidget {
               ),
             ],
           ),
-          Gap(6),
-          Text(
+          const Gap(6),
+          const Text(
             "كل عادة تترك أثرًا",
             style: TextStyle(
               fontSize: 16,
@@ -88,18 +90,18 @@ class CustomAppBar extends StatelessWidget {
               fontFamily: 'cairo',
             ),
           ),
-          Gap(24),
+          const Gap(24),
           // Action icons
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.transparent,
                   shape: BoxShape.circle,
                 ),
                 child: IconButton(
-                  icon: Icon(Icons.bar_chart_outlined),
+                  icon: const Icon(Icons.bar_chart_outlined),
                   iconSize: 28,
                   color: AppColors.primaryText,
                   onPressed: onStatsPressed,
@@ -111,19 +113,19 @@ class CustomAppBar extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: IconButton(
-                  icon: Icon(Icons.add_circle_outline),
+                  icon: const Icon(Icons.add_circle_outline),
                   iconSize: 34,
                   color: AppColors.primaryText,
                   onPressed: onAddPressed,
                 ),
               ),
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.transparent,
                   shape: BoxShape.circle,
                 ),
                 child: IconButton(
-                  icon: Icon(Icons.settings_outlined),
+                  icon: const Icon(Icons.settings_outlined),
                   iconSize: 28,
                   color: AppColors.primaryText,
                   onPressed: onSettingsPressed,

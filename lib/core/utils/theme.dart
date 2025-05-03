@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/core/utils/colors.dart'; // <- adjust to your actual path
+import 'package:habit_tracker/core/utils/colors.dart';
 
 class AppThemes {
   static ThemeData darkTheme = ThemeData(
@@ -58,7 +58,6 @@ class AppThemes {
       bodyMedium: TextStyle(color: AppColors.secondaryText),
     ),
     colorScheme: const ColorScheme.dark(
-      background: AppColors.background,
       surface: AppColors.cardColor,
       primary: AppColors.primaryText,
       onPrimary: AppColors.primaryText,
