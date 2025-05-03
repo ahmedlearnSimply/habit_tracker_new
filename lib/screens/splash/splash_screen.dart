@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:habit_tracker/core/services/localStorage/AppLocalStorage.dart';
+import 'package:habit_tracker/core/services/localStorage/app_local_storage.dart';
 import 'package:habit_tracker/core/utils/assets.dart';
 import 'package:habit_tracker/core/utils/colors.dart';
 import 'package:habit_tracker/core/utils/textStyle.dart';

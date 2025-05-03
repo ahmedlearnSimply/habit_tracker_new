@@ -1,7 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
-import 'dart:ui';
 
 import 'package:habit_tracker/core/utils/colors.dart';
 import 'package:habit_tracker/core/utils/textStyle.dart';
