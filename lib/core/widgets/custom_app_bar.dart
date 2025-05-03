@@ -5,20 +5,43 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:habit_tracker/core/utils/assets.dart';
 import 'package:habit_tracker/core/utils/colors.dart';
+import 'package:habit_tracker/main.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String userName;
+  final DateTime selectedDate = DateTime.now();
   final void Function() onAddPressed;
   final void Function()? onStatsPressed;
   final void Function() onSettingsPressed;
 
-  const CustomAppBar({
+  CustomAppBar({
     super.key,
     required this.userName,
     required this.onAddPressed,
     required this.onStatsPressed,
     required this.onSettingsPressed,
   });
+
+  String _getDayName(int day) {
+    switch (day) {
+      case 1:
+        return 'الإثنين';
+      case 2:
+        return 'الثلاثاء';
+      case 3:
+        return 'الأربعاء';
+      case 4:
+        return 'الخميس';
+      case 5:
+        return 'الجمعة';
+      case 6:
+        return 'السبت';
+      case 7:
+        return 'الأحد';
+      default:
+        return '';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +71,32 @@ class CustomAppBar extends StatelessWidget {
         children: [
           // Greeting
           _buildGreeting(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                _getDayName(selectedDate.weekday),
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                  fontFamily: 'cairo',
+                ),
+              ),
+              Text(
+                '${selectedDate.day}-${selectedDate.month}-${selectedDate.year}',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                  fontFamily: 'cairo',
+                ),
+              ),
+            ],
+          ),
           const Gap(6),
           _buildQuote(),
-          const Gap(24),
+          const Gap(10),
           // Action icons
           _buildActionIcons(),
         ],

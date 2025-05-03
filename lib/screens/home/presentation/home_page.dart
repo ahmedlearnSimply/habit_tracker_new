@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:habit_tracker/core/services/localStorage/app_local_storage.dart';
 import 'package:habit_tracker/core/utils/colors.dart';
 import 'package:habit_tracker/core/widgets/custom_app_bar.dart';
@@ -57,6 +58,7 @@ class HomePage extends StatelessWidget {
                         ));
                   },
                 ),
+                Gap(20),
                 BlocBuilder<HabitBloc, HabitState>(
                   builder: (context, state) {
                     if (state is HabitListUpdated) {
