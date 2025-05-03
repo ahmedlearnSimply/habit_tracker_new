@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:habit_tracker/core/utils/colors.dart';
-import 'package:habit_tracker/core/utils/textStyle.dart';
+import 'package:habit_tracker/core/utils/text_style.dart';
 import 'package:habit_tracker/core/widgets/custom_button.dart';
 import 'package:habit_tracker/screens/home/bloc/habit_bloc.dart';
 import 'package:habit_tracker/screens/home/bloc/habit_event.dart';

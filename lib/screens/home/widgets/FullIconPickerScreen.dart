@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:habit_tracker/core/utils/colors.dart';
-import 'package:habit_tracker/core/utils/textStyle.dart';
+import 'package:habit_tracker/core/utils/text_style.dart';
 
 class FullIconPickerScreen extends StatelessWidget {
   FullIconPickerScreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/core/utils/colors.dart';
-import 'package:habit_tracker/core/utils/textStyle.dart';
+import 'package:habit_tracker/core/utils/text_style.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton(

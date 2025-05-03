@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:habit_tracker/core/services/localStorage/app_local_storage.dart';
 import 'package:habit_tracker/core/utils/assets.dart';
 import 'package:habit_tracker/core/utils/colors.dart';
-import 'package:habit_tracker/core/utils/textStyle.dart';
+import 'package:habit_tracker/core/utils/text_style.dart';
 import 'package:habit_tracker/screens/home/presentation/home_page.dart';
 import 'package:habit_tracker/screens/onborading/page/onborading_screen.dart';
 
