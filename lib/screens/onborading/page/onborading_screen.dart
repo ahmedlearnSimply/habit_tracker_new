@@ -8,7 +8,7 @@ import 'package:habit_tracker/core/utils/assets.dart';
 import 'package:habit_tracker/core/utils/colors.dart';
 import 'package:habit_tracker/core/utils/text_style.dart';
 import 'package:habit_tracker/core/widgets/custom_button.dart';
-import 'package:habit_tracker/screens/home/presentation/home_page.dart';
+import 'package:habit_tracker/screens/home/presentation/home_screen.dart';
 import 'package:habit_tracker/screens/onborading/model/onboarding_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -179,7 +179,7 @@ class _OnboradingScreenState extends State<OnboradingScreen> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => HomePage(),
+                                builder: (context) => HomeScreen(),
                               ),
                             );
                           }

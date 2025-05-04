@@ -7,6 +7,8 @@ import 'package:habit_tracker/calendar_screen.dart';
 import 'package:habit_tracker/core/utils/theme.dart';
 import 'package:habit_tracker/screens/home/bloc/habit_bloc.dart';
 import 'package:habit_tracker/screens/home/model/habit_model.dart';
+import 'package:habit_tracker/screens/home/presentation/home_page.dart';
+import 'package:habit_tracker/screens/home/presentation/home_screen.dart';
 import 'package:habit_tracker/screens/splash/splash_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'core/services/localStorage/app_local_storage.dart';
@@ -38,7 +40,7 @@ class MainApp extends StatelessWidget {
         locale: Locale('ar'),
         theme: AppThemes.darkTheme,
         debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+        home: HomePage(),
         // home: SplashScreen(),
       ),
     );
