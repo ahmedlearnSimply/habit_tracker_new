@@ -10,16 +10,16 @@ import 'package:habit_tracker/main.dart';
 class CustomAppBar extends StatelessWidget {
   final String userName;
   final DateTime selectedDate = DateTime.now();
-  // final void Function() onAddPressed;
-  // final void Function()? onStatsPressed;
-  // final void Function() onSettingsPressed;
+  final void Function() onAddPressed;
+  final void Function()? onStatsPressed;
+  final void Function() onSettingsPressed;
 
   CustomAppBar({
     super.key,
     required this.userName,
-    // required this.onAddPressed,
-    // required this.onStatsPressed,
-    // required this.onSettingsPressed,
+    required this.onAddPressed,
+    required this.onStatsPressed,
+    required this.onSettingsPressed,
   });
 
   String _getDayName(int day) {
@@ -47,24 +47,24 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: AppColors.cardColor,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),
         ),
-        // boxShadow: [
-        //   BoxShadow(
-        //     blurRadius: 5,
-        //     color: Colors.black.withValues(
-        //       colorSpace: ColorSpace.displayP3,
-        //     ),
-        //     offset: const Offset(
-        //       0,
-        //       2,
-        //     ),
-        //   )
-        // ],
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 5,
+            color: Colors.black.withValues(
+              colorSpace: ColorSpace.displayP3,
+            ),
+            offset: const Offset(
+              0,
+              2,
+            ),
+          )
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,60 +96,61 @@ class CustomAppBar extends StatelessWidget {
           ),
           const Gap(6),
           _buildQuote(),
+          const Gap(10),
           // Action icons
-          // _buildActionIcons(),
+          _buildActionIcons(),
         ],
       ),
     );
   }
 
-  // Row _buildActionIcons() {
-  //   return Row(
-  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //     children: [
-  //       Container(
-  //         decoration: const BoxDecoration(
-  //           color: Colors.transparent,
-  //           shape: BoxShape.circle,
-  //         ),
-  //         child: IconButton(
-  //           icon: const Icon(
-  //             Icons.bar_chart_outlined,
-  //           ),
-  //           iconSize: 28,
-  //           color: AppColors.redColor,
-  //           onPressed: onStatsPressed,
-  //         ),
-  //       ),
-  //       Container(
-  //         decoration: const BoxDecoration(
-  //           color: Colors.green,
-  //           shape: BoxShape.circle,
-  //         ),
-  //         child: IconButton(
-  //           icon: const Icon(
-  //             Icons.add_circle_outline,
-  //           ),
-  //           iconSize: 34,
-  //           color: AppColors.primaryText,
-  //           onPressed: onAddPressed,
-  //         ),
-  //       ),
-  //       Container(
-  //         decoration: const BoxDecoration(
-  //           color: Colors.transparent,
-  //           shape: BoxShape.circle,
-  //         ),
-  //         child: IconButton(
-  //           icon: const Icon(Icons.settings_outlined),
-  //           iconSize: 28,
-  //           color: Colors.blueAccent,
-  //           onPressed: onSettingsPressed,
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
+  Row _buildActionIcons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            color: Colors.transparent,
+            shape: BoxShape.circle,
+          ),
+          child: IconButton(
+            icon: const Icon(
+              Icons.bar_chart_outlined,
+            ),
+            iconSize: 28,
+            color: AppColors.redColor,
+            onPressed: onStatsPressed,
+          ),
+        ),
+        Container(
+          decoration: const BoxDecoration(
+            color: Colors.green,
+            shape: BoxShape.circle,
+          ),
+          child: IconButton(
+            icon: const Icon(
+              Icons.add_circle_outline,
+            ),
+            iconSize: 34,
+            color: AppColors.primaryText,
+            onPressed: onAddPressed,
+          ),
+        ),
+        Container(
+          decoration: const BoxDecoration(
+            color: Colors.transparent,
+            shape: BoxShape.circle,
+          ),
+          child: IconButton(
+            icon: const Icon(Icons.settings_outlined),
+            iconSize: 28,
+            color: Colors.blueAccent,
+            onPressed: onSettingsPressed,
+          ),
+        ),
+      ],
+    );
+  }
 
   Text _buildQuote() {
     return const Text(

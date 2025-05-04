@@ -36,27 +36,27 @@ class HomePage extends StatelessWidget {
                   userName: AppLocalStorage.getCachedData(
                     key: AppLocalStorage.kUserName,
                   ),
-                  // onAddPressed: () {
-                  //   showAddHabitSheet(context);
-                  // },
-                  // onStatsPressed: state is HabitListUpdated
-                  //     ? () {
-                  //         Navigator.push(
-                  //             context,
-                  //             MaterialPageRoute(
-                  //               builder: (context) => InsightsScreen(
-                  //                 habits: state.habits,
-                  //               ),
-                  //             ));
-                  //       }
-                  //     : null,
-                  // onSettingsPressed: () {
-                  //   Navigator.push(
-                  //       context,
-                  //       MaterialPageRoute(
-                  //         builder: (context) => SettingsScreen(),
-                  //       ));
-                  // },
+                  onAddPressed: () {
+                    showAddHabitSheet(context);
+                  },
+                  onStatsPressed: state is HabitListUpdated
+                      ? () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => InsightsScreen(
+                                  habits: state.habits,
+                                ),
+                              ));
+                        }
+                      : null,
+                  onSettingsPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SettingsScreen(),
+                        ));
+                  },
                 ),
                 Gap(20),
                 BlocBuilder<HabitBloc, HabitState>(
